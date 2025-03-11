@@ -12,9 +12,13 @@ function MyButton() {
   );
 }
 
+function gerarNumAleat() {
+  return Math.floor(Math.random() * 100) + 1;
+}
+
 export default function Home() {
   const [hide, setHide] = useState(false);
-  const [random, setRandom] = useState(Math.floor(Math.random() * 100));
+  const [random, setRandom] = useState(0);
   const aula = 1;
   return (
     <div>
@@ -28,8 +32,9 @@ export default function Home() {
         </>
       )}
       <hr></hr>
-      <button onClick={() => setRandom(Math.floor(Math.random() * 100))}>Gerar número aleatório</button>
-      <p>{random}</p>
+      <button onClick= {() => setRandom(gerarNumAleat())}>
+        Aleatório: {random}
+      </button>
       <hr/>
     </div>
   );
