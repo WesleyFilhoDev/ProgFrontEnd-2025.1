@@ -14,7 +14,6 @@ function MyButton({onClick}) {
   )
 }
 
-
 function gerarNumAleat() {
   return Math.floor(Math.random() * 6) + 1;
 }
