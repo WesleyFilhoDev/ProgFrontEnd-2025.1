@@ -19,7 +19,6 @@ function gerarNumAleat() {
 }
 
 function GirarDado({src, alt}) {
-  const numAleat = gerarNumAleat();
   return (
     <img src={src} alt={alt} style={{ borderRadius: '50px', padding: '20px' }}/>
   )
