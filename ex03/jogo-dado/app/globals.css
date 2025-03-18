@@ -53,22 +53,34 @@ body {
 }
 
 button {
-  border: 2px solid red;
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  background-color: #333; 
-  color: white; 
   transition: background-color 0.2s ease, transform 0.1s ease; 
 }
 
-button:hover {
-  background-color: #555; 
+button.enabled:hover {
+  background-color: #555;
 }
 
-button:active {
-  background-color: #777; 
-  transform: scale(0.95); 
+button.enabled:active {
+  background-color: #777;
+  transform: scale(0.95);
+}
+
+button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.buttonGirar {
+  transition: background-color 0.2s ease, transform 0.1s ease; 
+}
+
+.buttonGirar:hover {
+  background-color: #555;
+}
+
+.buttonGirar:active {
+  background-color: #777;
+  transform: scale(0.95);
 }
 
 

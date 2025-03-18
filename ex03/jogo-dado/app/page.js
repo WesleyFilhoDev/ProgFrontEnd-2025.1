@@ -16,7 +16,7 @@ function NumeroRodada({ rodada }) {
 
 function MyButton({ onClick, disabled }) {
   return (
-    <button onClick={onClick} disabled={disabled} style={{ border: "2px solid red", borderRadius: "5px", padding: "10px", cursor: "pointer" }}>
+    <button className='buttonGirar' onClick={onClick} disabled={disabled} style={{ border: "2px solid red", borderRadius: "5px", padding: "10px", cursor: "pointer" }}>
       GIRAR
     </button>
   );
@@ -61,6 +61,7 @@ export default function Home() {
   };
 
   const handleEndRound = () => {
+    console.log("handleEndRound");
     if (rodada < 5) {
       if (random1 > random2) {
         setVitoriasJogador1(vitoriasJogador1 + 1);
@@ -105,7 +106,7 @@ export default function Home() {
         <div className="jogador2">
           <h1>JOGADOR 2</h1>
           <GirarDado src={`/dado${random2}.jpg`} alt={`Dado ${random2}`} />
-          <MyButton onClick={handleClick2} disabled={girar2} />
+          <MyButton onClick={handleClick2} className={girar1 && girar2 ? "enabled" : "disabled"}></MyButton>
         </div>
         <button
           onClick={handleEndRound}
@@ -116,7 +117,8 @@ export default function Home() {
             cursor: "pointer",
             marginTop: "20px"
           }}
-          disabled={!(girar1 && girar2)}>
+          disabled={!(girar1 && girar2)}
+          className={girar1 && girar2 ? "enabled" : "disabled"}>
           Avançar para a próxima rodada
         </button>
         <button 
