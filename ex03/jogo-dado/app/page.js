@@ -1,22 +1,28 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 
 function Tittle() {
-  return (
-    <h1>Jogo do Dado</h1>
-  );
+  return <h1>Jogo do Dado</h1>;
 }
 
 function NumeroRodada({ rodada }) {
-  return (
-    <h2>Rodada {rodada}</h2>
-  );
+  return <h2>Rodada {rodada}</h2>;
 }
 
 function MyButton({ onClick, disabled }) {
   return (
-    <button className='buttonGirar' onClick={onClick} disabled={disabled} style={{ border: "2px solid red", borderRadius: "5px", padding: "10px", cursor: "pointer" }}>
+    <button
+      className="buttonGirar"
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        border: "2px solid red",
+        borderRadius: "5px",
+        padding: "10px",
+        cursor: "pointer",
+      }}
+    >
       GIRAR
     </button>
   );
@@ -32,7 +38,11 @@ function gerarNumAleat2() {
 
 function GirarDado({ src, alt }) {
   return (
-    <img src={src} alt={alt} style={{ borderRadius: '50px', padding: '20px' }} />
+    <img
+      src={src}
+      alt={alt}
+      style={{ borderRadius: "50px", padding: "20px" }}
+    />
   );
 }
 
@@ -61,23 +71,22 @@ export default function Home() {
   };
 
   const handleEndRound = () => {
-    console.log("handleEndRound");
     if (rodada < 5) {
       if (random1 > random2) {
         setVitoriasJogador1(vitoriasJogador1 + 1);
       } else if (random2 > random1) {
         setVitoriasJogador2(vitoriasJogador2 + 1);
       }
-      setRodada(prevRodada => prevRodada + 1);
+      setRodada((prevRodada) => prevRodada + 1);
       setGirar1(false);
       setGirar2(false);
     } else {
       if (vitoriasJogador1 > vitoriasJogador2) {
-        setVencedor('Jogador 1');
+        setVencedor("Jogador 1");
       } else if (vitoriasJogador2 > vitoriasJogador1) {
-        setVencedor('Jogador 2');
+        setVencedor("Jogador 2");
       } else {
-        setVencedor('Empate');
+        setVencedor("Empate");
       }
     }
   };
@@ -96,7 +105,7 @@ export default function Home() {
   return (
     <div className="container">
       <Tittle />
-      <NumeroRodada rodada={rodada} style={{ color: 'white' }} />
+      <NumeroRodada rodada={rodada} style={{ color: "white" }} />
       <div className="jogo">
         <div className="jogador1">
           <h1>JOGADOR 1</h1>
@@ -106,7 +115,7 @@ export default function Home() {
         <div className="jogador2">
           <h1>JOGADOR 2</h1>
           <GirarDado src={`/dado${random2}.jpg`} alt={`Dado ${random2}`} />
-          <MyButton onClick={handleClick2} className={girar1 && girar2 ? "enabled" : "disabled"}></MyButton>
+          <MyButton onClick={handleClick2} disabled={girar2} />
         </div>
         <button
           onClick={handleEndRound}
@@ -115,25 +124,28 @@ export default function Home() {
             borderRadius: "5px",
             padding: "10px",
             cursor: "pointer",
-            marginTop: "20px"
+            marginTop: "20px",
           }}
           disabled={!(girar1 && girar2)}
-          className={girar1 && girar2 ? "enabled" : "disabled"}>
+          className={girar1 && girar2 ? "enabled" : "disabled"}
+        >
           Avançar para a próxima rodada
         </button>
-        <button 
-        onClick={handleReset} 
-        style={{ 
-          padding: "10px", 
-          marginTop: "20px",
-          borderRadius: "5px", 
-          border: "2px solid blue", 
-          cursor: "pointer" }}>
+        <button
+          onClick={handleReset}
+          style={{
+            padding: "10px",
+            marginTop: "20px",
+            borderRadius: "5px",
+            border: "2px solid blue",
+            cursor: "pointer",
+          }}
+        >
           Jogar novamente
         </button>
         {vencedor && (
-          <div style={{ marginTop: "30px", fontSize: "1.5rem"}}>
-            <h3>O vencedor é: {vencedor}</h3>            
+          <div style={{ marginTop: "30px", fontSize: "1.5rem" }}>
+            <h3>O vencedor é: {vencedor}</h3>
           </div>
         )}
       </div>
